@@ -29,4 +29,4 @@
 
     </tbody>
 </table>
-<a href="<?= URL ?>add">Add New Vehicule</a>
+<a href="<?= URL ?>add">Ajoute Vehicule</a>
