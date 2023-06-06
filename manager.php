@@ -1,22 +1,26 @@
 <?php
 
-abstract class Manager
+class Manager
 {
+    private $bdd;
 
-    private static $pdo;
-
-    private static function setBdd()
+    public function __construct()
     {
-        self::$pdo = new PDO("mysql:host=localhost;dbname=games;charset=utf8", "root", "arnold");
-        self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+       
+        $host = "localhost";
+        $dbname = "vtc";
+        $username = "root";
+        $password = "arnold";
+
+        try {
+            $this->bdd = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        }
     }
 
-    protected function getBdd()
+    public function getBdd()
     {
-
-        if (self::$pdo === null) {
-            self::setBdd();
-        }
-        return self::$pdo;
+        return $this->bdd;
     }
 }
